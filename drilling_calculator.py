@@ -1,15 +1,13 @@
 import streamlit as st
 import math
-from PIL import Image
 
-# Load and display profile picture
-profile_pic_url = "https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/mukhtiar.jpg"  # Replace with your actual image URL
-profile_pic = Image.open(profile_pic_url)
+# Profile Picture URL
+profile_pic_url = "https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/mukhtiar.jpg"  # Replace with correct image URL
 
 # Layout: Left for content, Right for profile picture
 col1, col2 = st.columns([7, 1])  # Left (content) | Right (profile)
 with col2:
-    st.image(profile_pic, width=100)  # Adjust width if needed
+    st.image(profile_pic_url, width=100)  # ✅ Fix: Use st.image() directly
     st.markdown("**Mukhtiar**", unsafe_allow_html=True)
     st.markdown("Mehran University", unsafe_allow_html=True)
 
