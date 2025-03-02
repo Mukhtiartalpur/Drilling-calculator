@@ -1,15 +1,35 @@
 import streamlit as st
 import math
 
+# Set page config for background and layout
+st.set_page_config(page_title="Drilling Calculator", layout="wide")
+
+# Background styling
+page_bg = """
+<style>
+[data-testid="stAppViewContainer"] {
+    background: url("https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/drilling_rig.jpg");
+    background-size: cover;
+}
+[data-testid="stSidebar"] {
+    background-color: #87CEEB;
+}
+</style>
+"""
+st.markdown(page_bg, unsafe_allow_html=True)
+
 # Profile Picture URL
-profile_pic_url = "https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/mukhtiar.jpg"  # Replace with correct image URL
+profile_pic_url = "https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/mukhtiar.jpg"
 
 # Layout: Left for content, Right for profile picture
 col1, col2 = st.columns([7, 1])  # Left (content) | Right (profile)
 with col2:
-    st.image(profile_pic_url, width=100)  # ✅ Fix: Use st.image() directly
-    st.markdown("**Mukhtiar**", unsafe_allow_html=True)
-    st.markdown("Mehran University", unsafe_allow_html=True)
+    st.image(profile_pic_url, width=100)
+    st.markdown("<div style='text-align: center;'><b>Mukhtiar</b><br>Mehran University</div>", unsafe_allow_html=True)
+
+# Welcome Message
+st.title("🔹 Welcome to the Drilling Engineering Calculator! 🔹")
+st.write("Select a category below to perform drilling-related calculations.")
 
 # Function Definitions
 def calculate_hydrostatic_pressure(mud_weight, depth):
@@ -29,12 +49,10 @@ def calculate_kill_mud_weight(initial_mud_weight, influx_gradient, tvd, influx_h
 def calculate_casing_burst_pressure(depth, mud_weight, safety_factor):
     return round(mud_weight * 0.052 * depth * safety_factor, 2)
 
-# Streamlit UI
-st.title("Drilling Engineering Calculator")
-st.sidebar.title("Select Calculation")
-option = st.sidebar.radio("Choose a category:", [
+# Sidebar Navigation
+option = st.sidebar.radio("Choose a Calculation:", [
     "Mud Weight & Hydrostatic Pressure", "Drilling Hydraulics",
-    "Well Control Calculations", "Casing & Tubing Design"])
+    "Well Control Calculations", "Casing & Tubing Design"], index=0)
 
 # Mud Weight & Hydrostatic Pressure
 if option == "Mud Weight & Hydrostatic Pressure":
