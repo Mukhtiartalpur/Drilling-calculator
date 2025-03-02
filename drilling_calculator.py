@@ -1,8 +1,19 @@
 import streamlit as st
 import math
+from PIL import Image
+
+# Load and display profile picture
+profile_pic_url = "https://raw.githubusercontent.com/Mukhtiartalpur/Drilling-calculator/main/mukhtiar.jpg"  # Replace with your actual image URL
+profile_pic = Image.open(profile_pic_url)
+
+# Layout: Left for content, Right for profile picture
+col1, col2 = st.columns([7, 1])  # Left (content) | Right (profile)
+with col2:
+    st.image(profile_pic, width=100)  # Adjust width if needed
+    st.markdown("**Mukhtiar**", unsafe_allow_html=True)
+    st.markdown("Mehran University", unsafe_allow_html=True)
 
 # Function Definitions
-
 def calculate_hydrostatic_pressure(mud_weight, depth):
     return round(mud_weight * 0.052 * depth, 2)
 
